@@ -1,0 +1,20 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PageNotFound from "../error/PageNotFound";
+import Navbar from "../navbar/Navbar";
+import Login from "../login/Login";
+import TestComponent from "../../components/form/TestComponent";
+
+export default function Routing() {
+	return (
+		<div>
+			<Router>
+				<Routes>
+					<Route exact path="/" element={<Login />} />
+					<Route exact path="/home" element={<Navbar />} />
+					<Route exact path="/test" element={<TestComponent />} />
+					<Route exact path="*" element={<PageNotFound />} />
+				</Routes>
+			</Router>
+		</div>
+	);
+}

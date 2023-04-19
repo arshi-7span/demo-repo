@@ -1,13 +1,14 @@
 import "./App.css";
-import TestComponent from "./components/form/TestComponent";
+import Routing from "./pages/routing/Routing";
 
 function App() {
 	return (
-		<div className="App">
-			<header className="App-header">
-				<TestComponent />
-			</header>
-		</div>
+		<>
+			<div className="App">
+				<header className="App-header" />
+			</div>
+			<Routing />
+		</>
 	);
 }
 
