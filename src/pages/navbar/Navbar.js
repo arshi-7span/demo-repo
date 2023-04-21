@@ -51,69 +51,27 @@ function Navbar() {
 								<span>Dashboard</span>
 							</a>
 						</li>
-						<li className="item" id="profile">
-							<a href="/" className="menu-btn">
-								<i className="fas fa-user-circle" />
-								<span>
-									Profile <i className="fas fa-chevron-down drop-down" />
-								</span>
-							</a>
-							<div className="sub-menu">
-								<Link to="/">
-									<i className="fas fa-image" />
-									<span>Picture</span>
-								</Link>
-								<Link to="/">
-									<i className="fas fa-address-card" />
-									<span>Info</span>
-								</Link>
-							</div>
-						</li>
 						<li className="item" id="messages">
 							<a href="#messages" className="menu-btn">
 								<i className="fas fa-envelope" />
 								<span>
-									Messages <i className="fas fa-chevron-down drop-down" />
+									Exam <i className="fas fa-chevron-down drop-down" />
 								</span>
 							</a>
 							<div className="sub-menu">
 								<Link to="/">
 									<i className="fas fa-envelope" />
-									<span>New</span>
+									<span>Exam List</span>
 								</Link>
 								<Link to="/">
 									<i className="fas fa-envelope-square" />
-									<span>Sent</span>
+									<span>New Exam</span>
 								</Link>
 								<Link to="/">
 									<i className="fas fa-exclamation-circle" />
-									<span>Spam</span>
+									<span>View Exam</span>
 								</Link>
 							</div>
-						</li>
-						<li className="item" id="settings">
-							<a href="#settings" className="menu-btn">
-								<i className="fas fa-cog" />
-								<span>
-									Settings <i className="fas fa-chevron-down drop-down" />
-								</span>
-							</a>
-							<div className="sub-menu">
-								<Link to="/">
-									<i className="fas fa-lock" />
-									<span>Password</span>
-								</Link>
-								<Link to="/">
-									<i className="fas fa-language" />
-									<span>Language</span>
-								</Link>
-							</div>
-						</li>
-						<li className="item">
-							<a href="/" className="menu-btn">
-								<i className="fas fa-info-circle" />
-								<span>About</span>
-							</a>
 						</li>
 					</div>
 				</div>
