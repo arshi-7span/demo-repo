@@ -6,18 +6,40 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import swal from "sweetalert";
+import axios from "axios";
+import { useState } from "react";
+import { API_IP, API_LOGIN, API_PORT, SUCCESS_RESPONSE } from "../../common/constants";
 
 function LoginPage() {
-	// Axios
-	// Axios Utilitys - error handling, common service
-	async function loginUser(credentials) {
-		return fetch("http://192.168.0.172:8091/login/", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify(credentials)
-		}).then((data) => data.json());
+	const [errorMessage, setErroMessage] = useState("");
+
+	async function loginUser(body) {
+		console.log(body);
+		axios({
+			method: "post",
+			baseURL: `${API_IP}:${API_PORT}`,
+			url: `/${API_LOGIN}/`,
+			headers: {},
+			data: body
+		})
+			.then((response) => {
+				console.log(response);
+				if (response.data.resultCode === SUCCESS_RESPONSE) {
+					setErroMessage();
+					swal("Success", response.data.resultMessage, "success", {
+						buttons: false,
+						timer: 2000
+					}).then(() => {
+						localStorage.setItem("accessToken", response.data.accessToken);
+					});
+				} else {
+					setErroMessage("Incorrect username or password");
+				}
+			})
+			.catch((error) => {
+				swal("Error", "Faild", "Error");
+				alert(error);
+			});
 	}
 
 	const handleSubmit = async (event) => {
@@ -30,22 +52,10 @@ function LoginPage() {
 
 		const username = data.get("email");
 		const password = data.get("password");
-		const response = await loginUser({
+		await loginUser({
 			username,
 			password
 		});
-
-		if ("data" in response) {
-			swal("Success", response.resultMessage, "success", {
-				buttons: false,
-				timer: 2000
-			}).then(() => {
-				localStorage.setItem("accessToken", response.data.accessToken);
-				// window.location.href = "/profile";
-			});
-		} else {
-			swal("Failed", response.resultMessage, "error");
-		}
 	};
 
 	return (
@@ -84,14 +94,19 @@ function LoginPage() {
 						id="password"
 						autoComplete="current-password"
 					/>
+					<span color="alert">
+						<Typography color="red"> {errorMessage} </Typography>
+					</span>
 					<FormControlLabel
 						control={<Checkbox value="remember" color="primary" />}
 						label="Remember me"
 					/>
+
 					{/* Button Component */}
 					<Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
 						Sign In
 					</Button>
+
 					{/* <Grid container>
 						<Grid item xs>
 							<Link href="#" variant="body2">
@@ -108,13 +123,6 @@ function LoginPage() {
 			</Box>
 		</Container>
 	);
-	// return (
-	//   <BrowserRouter >
-	//     <div className="App">
-	//       <Sidebar />
-	//     </div>
-	//   </BrowserRouter>
-	// );
 }
 
 export default LoginPage;
