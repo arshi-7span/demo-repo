@@ -1,7 +1,3 @@
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
@@ -9,6 +5,8 @@ import swal from "sweetalert";
 import axios from "axios";
 import { useState } from "react";
 import { API_IP, API_LOGIN, API_PORT, SUCCESS_RESPONSE } from "../../common/constants";
+import STextField from "../../common/textField";
+import SButton from "../../common/button";
 
 function LoginPage() {
 	const [errorMessage, setErroMessage] = useState("");
@@ -73,21 +71,14 @@ function LoginPage() {
 				</Typography>
 				<Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
 					{/* textField need seprate component */}
-					<TextField
-						margin="normal"
-						required
-						fullWidth
+					<STextField
 						id="email"
 						label="Email Address"
 						name="email"
-						// type="email"
 						autoComplete="email"
 						autoFocus
 					/>
-					<TextField
-						margin="normal"
-						required
-						fullWidth
+					<STextField
 						name="password"
 						label="Password"
 						type="password"
@@ -97,15 +88,13 @@ function LoginPage() {
 					<span color="alert">
 						<Typography color="red"> {errorMessage} </Typography>
 					</span>
-					<FormControlLabel
+					{/* <FormControlLabel
 						control={<Checkbox value="remember" color="primary" />}
 						label="Remember me"
-					/>
+					/> */}
 
 					{/* Button Component */}
-					<Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-						Sign In
-					</Button>
+					<SButton type="submit">Sign In</SButton>
 
 					{/* <Grid container>
 						<Grid item xs>
